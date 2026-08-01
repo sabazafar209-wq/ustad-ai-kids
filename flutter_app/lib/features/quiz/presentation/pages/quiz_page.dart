@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+import 'package:ustad_ai_kids/core/navigation/navigation_helper.dart';
+import 'package:ustad_ai_kids/core/navigation/standard_app_bar.dart';
 
 import '../../../progress/presentation/providers/progress_provider.dart';
 import '../../data/repositories/quiz_repository.dart';
@@ -73,7 +74,7 @@ class _QuizPageState extends ConsumerState<QuizPage> {
           ElevatedButton(
             onPressed: () {
               Navigator.of(dialogContext).pop();
-              context.go("/dashboard");
+              NavigationHelper.replace(context, '/dashboard');
             },
             child: const Text("Done"),
           ),
@@ -87,8 +88,8 @@ class _QuizPageState extends ConsumerState<QuizPage> {
     final question = questions[currentQuestion];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text("${widget.subject} Quiz"),
+      appBar: StandardAppBar(
+        title: '${widget.subject} Quiz',
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),

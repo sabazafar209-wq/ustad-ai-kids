@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
+import 'package:ustad_ai_kids/core/navigation/navigation_helper.dart';
+import 'package:ustad_ai_kids/core/navigation/standard_app_bar.dart';
 
 import '../../domain/models/child_profile.dart';
 import '../providers/child_provider.dart';
@@ -59,15 +60,14 @@ class _CreateChildPageState extends ConsumerState<CreateChildPage> {
 
     if (!mounted) return;
 
-    context.go("/dashboard");
+    NavigationHelper.replace(context, '/dashboard');
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Create Child"),
-        centerTitle: true,
+      appBar: const StandardAppBar(
+        title: 'Create Child',
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(24),

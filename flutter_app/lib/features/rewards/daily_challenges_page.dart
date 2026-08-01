@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ustad_ai_kids/core/navigation/standard_app_bar.dart';
 
 import 'rewards_providers.dart';
 
@@ -11,8 +12,8 @@ class DailyChallengesPage extends ConsumerWidget {
     final challenges = ref.watch(dailyChallengesProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Daily Challenges'),
+      appBar: StandardAppBar(
+        title: 'Daily Challenges',
         actions: [
           IconButton(
             onPressed: () async {
@@ -44,9 +45,13 @@ class DailyChallengesPage extends ConsumerWidget {
                               onPressed: () async {
                                 final messenger = ScaffoldMessenger.of(context);
                                 await ref.read(dailyChallengesProvider.notifier).complete(c.id);
-                                messenger.showSnackBar(SnackBar(
-                                  content: Text('Completed! +${c.xpReward} XP, +${c.coinsReward} coins'),
-                                ));
+                                messenger.showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Completed! +${c.xpReward} XP, +${c.coinsReward} coins',
+                                    ),
+                                  ),
+                                );
                               },
                               child: const Text('Complete'),
                             ),

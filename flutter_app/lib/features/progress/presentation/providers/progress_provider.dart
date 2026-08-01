@@ -32,6 +32,15 @@ class ProgressNotifier extends StateNotifier<ProgressModel> {
 
     await _storage.saveProgress(state);
   }
+
+  Future<void> addRewards({int xp = 0, int coins = 0}) async {
+    state = state.copyWith(
+      xp: state.xp + xp,
+      coins: state.coins + coins,
+    );
+
+    await _storage.saveProgress(state);
+  }
 }
 
 final progressProvider =

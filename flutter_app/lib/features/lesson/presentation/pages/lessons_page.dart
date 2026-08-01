@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ustad_ai_kids/core/navigation/navigation_helper.dart';
+import 'package:ustad_ai_kids/core/navigation/standard_app_bar.dart';
 
 import '../providers/lesson_provider.dart';
 import '../widgets/lesson_tile.dart';
-import 'lesson_page.dart';
 
 class LessonsPage extends ConsumerWidget {
   const LessonsPage({super.key});
@@ -13,9 +14,8 @@ class LessonsPage extends ConsumerWidget {
     final lessons = ref.watch(lessonProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Today's Lessons"),
-        centerTitle: true,
+      appBar: const StandardAppBar(
+        title: "Today's Lessons",
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(20),
@@ -26,13 +26,10 @@ class LessonsPage extends ConsumerWidget {
           return LessonTile(
             lesson: lesson,
             onTap: () {
-              Navigator.push(
+              NavigationHelper.push(
                 context,
-                MaterialPageRoute(
-                  builder: (_) => LessonPage(
-                    lesson: lesson,
-                  ),
-                ),
+                '/lesson',
+                extra: lesson,
               );
             },
           );

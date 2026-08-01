@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:ustad_ai_kids/core/navigation/standard_app_bar.dart';
 
 import 'rewards_providers.dart';
 
@@ -11,8 +12,8 @@ class AchievementsPage extends ConsumerWidget {
     final achievements = ref.watch(achievementsProvider);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Achievements'),
+      appBar: const StandardAppBar(
+        title: 'Achievements',
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ustad_ai_kids/core/navigation/standard_app_bar.dart';
 
 import '../widgets/register_form.dart';
 import '../widgets/register_header.dart';
@@ -10,8 +11,8 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Register"),
+      appBar: const StandardAppBar(
+        title: 'Register',
       ),
       body: SafeArea(
         child: SingleChildScrollView(

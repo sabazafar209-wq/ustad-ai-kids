@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ustad_ai_kids/core/navigation/standard_app_bar.dart';
 
 import '../widgets/login_form.dart';
 
@@ -11,7 +12,9 @@ class LoginPage extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const StandardAppBar(
+        title: 'Login',
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24),

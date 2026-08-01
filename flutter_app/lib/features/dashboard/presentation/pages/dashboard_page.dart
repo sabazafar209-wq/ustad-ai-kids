@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../child/presentation/providers/child_provider.dart';
 import '../../../progress/presentation/providers/progress_provider.dart';
+import 'package:ustad_ai_kids/core/navigation/navigation_helper.dart';
 import 'package:ustad_ai_kids/features/rewards/rewards_providers.dart';
 
 import '../widgets/achievement_card.dart';
@@ -114,7 +114,7 @@ class DashboardPage extends ConsumerWidget {
                     title: subject,
                     color: Colors.blue,
                     onTap: () {
-                      context.go("/quiz");
+                      NavigationHelper.push(context, '/quiz');
                     },
                   ),
                 ),
@@ -162,14 +162,14 @@ class DashboardPage extends ConsumerWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      context.go('/achievements');
+                      NavigationHelper.push(context, '/achievements');
                     },
                     child: const Text('View Achievements'),
                   ),
                   const SizedBox(width: 12),
                   ElevatedButton(
                     onPressed: () {
-                      context.go('/daily-challenges');
+                      NavigationHelper.push(context, '/daily-challenges');
                     },
                     child: const Text('Daily Challenges'),
                   ),

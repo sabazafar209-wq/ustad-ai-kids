@@ -66,16 +66,10 @@ class DailyChallengesNotifier extends StateNotifier<List<DailyChallengeModel>> {
     // award progress (xp + coins)
     if (completed != null) {
       final progressNotifier = ref.read(progressProvider.notifier);
-      progressNotifier.state = progressNotifier.state.copyWith(
-        xp: progressNotifier.state.xp + completed!.xpReward,
-        coins: progressNotifier.state.coins + completed!.coinsReward,
+      await progressNotifier.addRewards(
+        xp: completed!.xpReward,
+        coins: completed!.coinsReward,
       );
-
-      // persist updated progress as well if provider supports it
-      try {
-        // If LocalProgressStorage is available via package import, use it
-        // This is a best-effort persistence; progress provider will also persist.
-      } catch (_) {}
     }
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:ustad_ai_kids/core/navigation/navigation_helper.dart';
+import 'package:ustad_ai_kids/core/navigation/standard_app_bar.dart';
 
 import '../../domain/models/lesson_content.dart';
 
@@ -14,8 +15,8 @@ class LessonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(lesson.subject),
+      appBar: StandardAppBar(
+        title: lesson.subject,
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
@@ -94,7 +95,7 @@ class LessonPage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  context.go("/quiz");
+                  NavigationHelper.push(context, '/quiz');
                 },
               ),
             ),
