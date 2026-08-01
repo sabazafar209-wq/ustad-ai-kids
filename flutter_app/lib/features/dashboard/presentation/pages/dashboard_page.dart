@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../child/presentation/providers/child_provider.dart';
 import '../../../progress/presentation/providers/progress_provider.dart';
+import 'package:ustad_ai_kids/features/rewards_providers.dart';
 
 import '../widgets/achievement_card.dart';
 import '../widgets/bottom_nav.dart';
@@ -71,7 +72,32 @@ class DashboardPage extends ConsumerWidget {
                 ],
               ),
 
-              const SizedBox(height: 35),
+              const SizedBox(height: 16),
+
+              // Level & Achievements summary
+              Row(
+                children: [
+                  StatsCard(
+                    icon: Icons.emoji_events,
+                    title: "Level",
+                    value: ((progress.xp ~/ 100) + 1).toString(),
+                    color: Colors.purple,
+                  ),
+                  const SizedBox(width: 12),
+                  Consumer(builder: (context, ref2, _) {
+                    final achievements = ref2.watch(achievementsProvider);
+                    final unlocked = achievements.where((a) => a.unlocked).length;
+                    return StatsCard(
+                      icon: Icons.lock_open,
+                      title: "Unlocked",
+                      value: unlocked.toString(),
+                      color: Colors.blueGrey,
+                    );
+                  }),
+                ],
+              ),
+
+              const SizedBox(height: 20),
 
               Text(
                 "Continue Learning",
@@ -101,34 +127,53 @@ class DashboardPage extends ConsumerWidget {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
 
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
 
               SizedBox(
                 height: 150,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: const [
-                    AchievementCard(
-                      emoji: "🥇",
-                      title: "First Lesson",
-                    ),
-                    SizedBox(width: 12),
-                    AchievementCard(
-                      emoji: "🔥",
-                      title: "7 Day Streak",
-                    ),
-                    SizedBox(width: 12),
-                    AchievementCard(
-                      emoji: "⭐",
-                      title: "500 XP",
-                    ),
-                    SizedBox(width: 12),
-                    AchievementCard(
-                      emoji: "🏆",
-                      title: "Top Learner",
-                    ),
-                  ],
-                ),
+                child: Consumer(builder: (context, ref2, _) {
+                  final achievements = ref2.watch(achievementsProvider);
+
+                  if (achievements.isEmpty) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  // show up to 4 achievement cards
+                  final preview = achievements.take(4).toList();
+
+                  return ListView.separated(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: preview.length,
+                    separatorBuilder: (context, index) => const SizedBox(width: 12),
+                    itemBuilder: (context, index) {
+                      final a = preview[index];
+                      return AchievementCard(
+                        emoji: a.emoji,
+                        title: a.title,
+                      );
+                    },
+                  );
+                }),
+              ),
+
+              const SizedBox(height: 12),
+
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      context.go('/achievements');
+                    },
+                    child: const Text('View Achievements'),
+                  ),
+                  const SizedBox(width: 12),
+                  ElevatedButton(
+                    onPressed: () {
+                      context.go('/daily-challenges');
+                    },
+                    child: const Text('Daily Challenges'),
+                  ),
+                ],
               ),
 
               const SizedBox(height: 30),

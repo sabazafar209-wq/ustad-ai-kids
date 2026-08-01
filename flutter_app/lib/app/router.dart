@@ -6,6 +6,9 @@ import '../features/authentication/presentation/pages/login_page.dart';
 import '../features/authentication/presentation/pages/register_page.dart';
 import '../features/child/presentation/pages/create_child_page.dart';
 import '../features/quiz/presentation/pages/quiz_page.dart';
+import '../features/achievements_page.dart';
+import '../features/daily_challenges_page.dart';
+
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
   routes: [
@@ -45,6 +48,16 @@ final GoRouter appRouter = GoRouter(
   path: '/dashboard',
   builder: (context, state) => const DashboardPage(),
 ),
+
+    // Rewards routes
+    GoRoute(
+      path: '/achievements',
+      builder: (context, state) => const AchievementsPage(),
+    ),
+    GoRoute(
+      path: '/daily-challenges',
+      builder: (context, state) => const DailyChallengesPage(),
+    ),
 
   ],
 );
