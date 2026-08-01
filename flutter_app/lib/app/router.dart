@@ -6,8 +6,8 @@ import '../features/authentication/presentation/pages/login_page.dart';
 import '../features/authentication/presentation/pages/register_page.dart';
 import '../features/child/presentation/pages/create_child_page.dart';
 import '../features/quiz/presentation/pages/quiz_page.dart';
-import '../features/achievements_page.dart';
-import '../features/daily_challenges_page.dart';
+import 'package:ustad_ai_kids/features/rewards/achievements_page.dart';
+import 'package:ustad_ai_kids/features/rewards/daily_challenges_page.dart';
 
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',

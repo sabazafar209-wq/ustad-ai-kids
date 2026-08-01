@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../child/presentation/providers/child_provider.dart';
 import '../../../progress/presentation/providers/progress_provider.dart';
-import 'package:ustad_ai_kids/features/rewards_providers.dart';
+import 'package:ustad_ai_kids/features/rewards/rewards_providers.dart';
 
 import '../widgets/achievement_card.dart';
 import '../widgets/bottom_nav.dart';
