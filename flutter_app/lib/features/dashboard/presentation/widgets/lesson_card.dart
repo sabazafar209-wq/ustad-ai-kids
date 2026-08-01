@@ -4,12 +4,14 @@ class LessonCard extends StatelessWidget {
   final String emoji;
   final String title;
   final Color color;
+  final VoidCallback onTap;
 
   const LessonCard({
     super.key,
     required this.emoji,
     required this.title,
     required this.color,
+    required this.onTap,
   });
 
   @override
@@ -25,7 +27,7 @@ class LessonCard extends StatelessWidget {
         ),
         title: Text(title),
         trailing: const Icon(Icons.arrow_forward_ios_rounded),
-        onTap: () {},
+        onTap: onTap,
       ),
     );
   }

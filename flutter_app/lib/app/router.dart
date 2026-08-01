@@ -5,16 +5,20 @@ import '../features/welcome/presentation/pages/welcome_page.dart';
 import '../features/authentication/presentation/pages/login_page.dart';
 import '../features/authentication/presentation/pages/register_page.dart';
 import '../features/child/presentation/pages/create_child_page.dart';
-
+import '../features/quiz/presentation/pages/quiz_page.dart';
 final GoRouter appRouter = GoRouter(
   initialLocation: '/',
   routes: [
-
     GoRoute(
       path: '/',
       builder: (context, state) => const SplashPage(),
     ),
-
+   GoRoute(
+  path: '/quiz',
+  builder: (context, state) => const QuizPage(
+    subject: "Math",
+  ),
+),
     GoRoute(
       path: '/welcome',
       builder: (context, state) => const WelcomePage(),
